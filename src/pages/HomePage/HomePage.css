@@ -1,0 +1,97 @@
+/* HomePage.css */
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+/* Navbar styles */
+
+/* Slideshow styles */
+.mySlides {
+  display: none;
+}
+
+/* Band Section styles */
+#band {
+  background-color: #f1f1f1;
+  padding: 64px 10px;
+}
+
+/* Tour Section styles */
+#tour {
+  padding: 64px 0;
+}
+
+.w3-ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Contact Section styles */
+#contact {
+  background-color: #f9f9f9;
+  padding: 64px 0;
+}
+
+/* Footer styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 64px 0;
+}
+
+footer i {
+  margin: 0 10px;
+}
+
+/* Responsive styles */
+@media only screen and (max-width: 600px) {
+  .w3-bar-item:not(.w3-hide-medium, .w3-hide-large) {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  .w3-bar-item:not(.w3-hide-medium, .w3-hide-large) a {
+    padding: 12px;
+  }
+
+  .w3-bar-item.w3-button {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+
+  #navDemo {
+    display: none;
+  }
+}
+
+div .vid {
+  color: black;
+  margin-top: 5.1%;
+  margin-left: 0%;
+  height: 30%;
+  width: 100vh;
+}
+
+div .vid a {
+  color: black;
+  margin-top: 10%;
+  width: 100%;
+}
+
+.video1 {
+  top: 100px;
+  width: 100%;
+  height: 10%;
+}
+
+.board-img {
+  margin-top: 80px;
+}
+
+.board-img img {
+  width: 100%;
+  height: 70%;
+}

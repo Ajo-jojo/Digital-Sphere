@@ -1,0 +1,62 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  width: 100%;
+} */
+.mainbody {
+  /* margin-top: -20px; */
+  /* padding: 0 10px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* min-height: 100vh;  */
+  /* max-width: 100%; */
+  /* background: #8A6CFF; */
+  margin: 0;
+}
+
+.wrapper .gradient-box {
+  height: 220px;
+  width: 100%;
+  border-radius: 7px;
+  background: linear-gradient(to left top, #5665e9, #a271f8);
+}
+.row1 {
+  display: flex;
+  margin: 20px 0;
+  justify-content: space-between;
+}
+.options p {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+.row1 :where(.column, button) {
+  width: calc(100% / 2 - 12px);
+}
+.options .select-box {
+  border-radius: 5px;
+  padding: 10px 15px;
+  border: 1px solid #aaa;
+}
+.select-box select {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1.12rem;
+  background: none;
+}
+/* .palette {
+    margin-top: -80px;
+  margin-left: 200px;
+} */
+.palette-input {
+  height: 41px;
+  width: calc(100% / 2 - 20px);
+}
+.palette input:last-child {
+  margin-left: 6px;
+}
