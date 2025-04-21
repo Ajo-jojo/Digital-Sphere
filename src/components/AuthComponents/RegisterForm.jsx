@@ -205,10 +205,9 @@ import {
   MDBBtn,
 } from 'mdb-react-ui-kit';
 import './RegisterStyle.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { signUpUser } from '../../redux/actionCreators/authActionCreator';
-import { useNavigate } from 'react-router-dom';
+import { signUpUser, signUpWithGoogle } from '../../redux/actionCreators/authActionCreator';
 
 const RegisterForm = () => {
   const [name, setName] = React.useState('');
@@ -230,12 +229,16 @@ const RegisterForm = () => {
       alert('Passwords do not match');
       return;
     }
-    dispatch(signUpUser(name, email, password, setSuccess));
+    dispatch(signUpUser(name, email, password, setSuccess, navigate));
+  };
+
+  const handleGoogleSignUp = () => {
+    dispatch(signUpWithGoogle(setSuccess, navigate));
   };
 
   React.useEffect(() => {
     if (success) {
-      navigate('/dashboard');
+      navigate('/main');
     }
   }, [success, navigate]);
 
@@ -262,7 +265,6 @@ const RegisterForm = () => {
             <MDBCol md="6">
               <MDBCardBody className="d-flex flex-column" style={{ marginTop: '1%' }}>
                 <div className="d-flex flex-row mt-2">
-                  {/* <MDBIcon fas icon="cubes fa-3x me-3" style={{ color: '#ff6219' }} /> */}
                   <span className="h2 fw-bold mb-0">Digital Sphere</span>
                 </div>
 
@@ -276,8 +278,8 @@ const RegisterForm = () => {
                   <MDBInput
                     wrapperClass="mb-4"
                     placeholder="Name"
-                    id="nameFormControlLg" // Make the id unique
-                    type="name"
+                    id="nameFormControlLg"
+                    type="text"
                     size="lg"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -286,7 +288,7 @@ const RegisterForm = () => {
                   <MDBInput
                     wrapperClass="mb-4"
                     placeholder="Email address"
-                    id="emailFormControlLg" // Make the id unique
+                    id="emailFormControlLg"
                     type="email"
                     size="lg"
                     value={email}
@@ -296,7 +298,7 @@ const RegisterForm = () => {
                   <MDBInput
                     wrapperClass="mb-4"
                     placeholder="Password"
-                    id="passwordFormControlLg" // Make the id unique
+                    id="passwordFormControlLg"
                     type="password"
                     size="lg"
                     value={password}
@@ -306,53 +308,22 @@ const RegisterForm = () => {
                   <MDBInput
                     wrapperClass="mb-4"
                     placeholder="Re-type Password"
-                    id="passwordConfirmationFormControlLg" // Make the id unique
+                    id="passwordConfirmationFormControlLg"
                     type="password"
                     size="lg"
                     value={passwordConfirmation}
                     onChange={(e) => setPasswordConfirmation(e.target.value)}
                   />
 
-                  {/* <MDBInput
-                  placeholder="Name"
-                  id="nameFormControlLg"
-                  type="text"
-                  size="lg"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-                <MDBInput
-                  placeholder="Email address"
-                  id="emailFormControlLg"
-                  type="email"
-                  size="lg"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <MDBInput
-                  placeholder="Password"
-                  id="passwordFormControlLg"
-                  type="password"
-                  size="lg"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <MDBInput
-                  placeholder="Re-type Password"
-                  id="passwordConfirmationFormControlLg"
-                  type="password"
-                  size="lg"
-                  value={passwordConfirmation}
-                  onChange={(e) => setPasswordConfirmation(e.target.value)}
-                /> */}
-
-                  {/* <MDBBtn color="primary" size="lg" block type="submit" style={{textAlign:'center'}}>
-                  Register
-                </MDBBtn> */}
                   <MDBBtn className="mb-4 px-5" color="dark" size="lg" type="submit" noRipple>
                     Register
                   </MDBBtn>
                 </form>
+
+                <MDBBtn className="mb-3 px-5" color="danger" size="lg" onClick={handleGoogleSignUp}>
+                  Sign Up with Google
+                </MDBBtn>
+
                 <p className="text-center mt-3 mb-0">
                   Already have an account? <Link to="/login">Login</Link>
                 </p>

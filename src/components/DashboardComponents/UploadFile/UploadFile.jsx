@@ -7,6 +7,7 @@ import {
   deleteUploadedFile,
 } from '../../../redux/actionCreators/fileFoldersActionCreator';
 
+// const { uploadFile, deleteUploadedFile } = fileActions;
 const UploadFile = ({ setIsFileUploadModalOpen }) => {
   const [file, setFile] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -34,6 +35,30 @@ const UploadFile = ({ setIsFileUploadModalOpen }) => {
     return filePresent ? true : false;
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setError(null);
+  //   setSuccess(false);
+  //   setUploadProgress(0);
+
+  //   if (file) {
+  //     if (!checkFileAlreadyPresent(file.name)) {
+  //       const formData = new FormData();
+  //       formData.append('file', file);
+  //       formData.append('userId', user?.uid || '');
+  //       formData.append('folderId', currentFolder || 'root');
+  //       formData.append('path', currentFolder === 'root' ? [] : [currentFolder]);
+  //       formData.append('createdAt', new Date().toISOString());
+
+  //       dispatch(uploadFile(formData, setSuccess, setError, setUploadProgress));
+  //     } else {
+  //       setError('File already exists in this folder');
+  //     }
+  //   } else {
+  //     setError('Please select a file to upload');
+  //   }
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setError(null);
@@ -43,11 +68,14 @@ const UploadFile = ({ setIsFileUploadModalOpen }) => {
     if (file) {
       if (!checkFileAlreadyPresent(file.name)) {
         const formData = new FormData();
+        const storagePath = `uploads/${user?.uid || 'unknown'}/${file.name}`; // ✅ ADD THIS
+
         formData.append('file', file);
         formData.append('userId', user?.uid || '');
         formData.append('folderId', currentFolder || 'root');
         formData.append('path', currentFolder === 'root' ? [] : [currentFolder]);
         formData.append('createdAt', new Date().toISOString());
+        formData.append('storagePath', storagePath); // ✅ ADD THIS
 
         dispatch(uploadFile(formData, setSuccess, setError, setUploadProgress));
       } else {

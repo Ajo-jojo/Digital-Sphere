@@ -1,11 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 // import { SignOutUser } from '../../redux/actionCreators/authActionCreator'
 import { SignOutUser } from '../../../redux/actionCreators/authActionCreator';
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   return (
@@ -25,13 +26,20 @@ const Navbar = () => {
             </li>
 
             <li className="nav-item mx-2">
-              <Link className="btn btn-primary btn-sm " to="/dashboard">
+              <Link className="btn btn-primary btn-sm " to="/main">
                 Home
               </Link>
             </li>
 
             <li className="nav-item">
-              <button className="btn btn-success btn-sm" onClick={() => dispatch(SignOutUser())}>
+              <button
+                className="btn btn-success btn-sm"
+                onClick={() => {
+                  console.log('working');
+                  dispatch(SignOutUser());
+                  navigate('/');
+                }}
+              >
                 Logout
               </button>
             </li>

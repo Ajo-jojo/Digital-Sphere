@@ -9,11 +9,23 @@ const ImageConverter = () => {
 
   const handleFileChange = (acceptedFiles) => {
     const file = acceptedFiles[0];
-    setSelectedFile(file);
+    if (file && file.type.startsWith('image/')) {
+      setSelectedFile(file);
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid file',
+        text: 'Please select an image file only!',
+        confirmButtonColor: 'crimson',
+      });
+    }
   };
 
   const { getRootProps, getInputProps } = useDropzone({
-    accept: 'image/*',
+    accept: {
+      'image/*': ['.jpeg', '.jpg', '.png', '.webp'],
+    },
+    multiple: false,
     onDrop: handleFileChange,
   });
 
@@ -75,7 +87,6 @@ const ImageConverter = () => {
       cursor: 'pointer',
       margin: '10px',
     },
-
     dropzoneStyle: {
       border: '2px dashed #ccc',
       borderRadius: '4px',
@@ -103,10 +114,18 @@ const ImageConverter = () => {
       >
         <h1>File Converter</h1>
       </nav>
+
       <div {...getRootProps()} style={styles.dropzoneStyle}>
         <input {...getInputProps()} />
         <p style={{ fontSize: '15px' }}>Drag 'n' drop an image here, or click to select one</p>
       </div>
+
+      {selectedFile && (
+        <p style={{ textAlign: 'center', marginTop: '10px', fontSize: '16px' }}>
+          Selected File: <strong>{selectedFile.name}</strong>
+        </p>
+      )}
+
       <div
         style={{
           display: 'flex',

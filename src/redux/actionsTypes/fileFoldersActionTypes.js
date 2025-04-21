@@ -8,6 +8,7 @@ export const CHANGE_FOLDER = 'CHANGE_FOLDER';
 // export const DELETE_FOLDER = 'DELETE_FOLDER';
 export const DELETE_FILE = 'DELETE_FILE';
 export const DELETE_UPLOADED_FILE = 'DELETE_UPLOADED_FILE';
+export const DELETE_FOLDER = 'DELETE_FOLDER';
 
 // File
 
